@@ -1,8 +1,14 @@
 <template>
     <div @click="handleClick" class='pokemon-card'>
-        <div class='pokemon-details'>
-            <img :src="pokemon.sprites.front_default" :alt="pokemon.name" />
-            <h3>{{pokemon.name}}</h3>
+        <div class='pokemon-info'>
+            <div class='pokemon-details'>
+                <img :src="pokemon.sprites.front_default" :alt="pokemon.name" />
+                <h3>{{pokemon.name}}</h3>
+            </div>
+            <div class='pokemon-selection'>
+                <button name='1' @click="handleClick" >Select Fighter 1</button>
+                <button name='2' @click="handleClick" >Selecter Fighter 2</button>
+            </div>
         </div>
     </div>
 </template>
@@ -18,7 +24,8 @@
             }
         },
         methods: {
-            handleClick(){
+            handleClick(event){
+                console.log(+event.target.name)
                 fetch(this.base_url + `/pokemon/${this.pokemon.id}`)
                     .then(res => res.json())
                     .then(console.log)
@@ -37,11 +44,28 @@
         border-radius: 3px;
         margin-bottom: 1rem;
 
-        .pokemon-details {
+        .pokemon-info {
             display: flex;
             flex-direction: column;
-            width: 100%;
-            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+
+            .pokemon-details {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
+            .pokemon-selection {  
+                display: flex;
+                flex-direction: column;                 
+                button {
+                    width: 100%;
+                    height: 2rem;
+                }
+            }
         }
+
     }
 </style>

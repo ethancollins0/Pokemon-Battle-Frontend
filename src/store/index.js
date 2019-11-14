@@ -7,7 +7,11 @@ export default new Vuex.Store({
   state: {
     pokemon: [],
     base_url: 'http://10.225.132.82:3000',
-    filter: ''
+    filter: '',
+    fighters: [
+      [],
+      []
+    ]
   },
   mutations: {
     setPokemon(state, pokemon){
@@ -15,6 +19,9 @@ export default new Vuex.Store({
     },
     filter(state, filter){
       state.filter = filter
+    },
+    setFighters(state, {position, pokemon}){
+      state.fighters[position] = pokemon
     }
   },
   actions: {

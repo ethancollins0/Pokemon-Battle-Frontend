@@ -1,5 +1,5 @@
 <template>
-    <div class='PokemonFilter'>
+    <div class='pokemon-filter'>
         <form @submit="handleSubmit">
             <input name='name' v-on:input="handleChange" />
         </form>
@@ -26,5 +26,23 @@
 </script>
 
 <style lang="scss">
+    .pokemon-filter {
+        form {
+            display: flex;
+            justify-content: center;
 
+            input {
+                height: 2rem;
+                margin-bottom: 1rem;
+                width: 30vw;
+                min-width: 200px;
+                max-width: 300px;
+                outline: none;
+                font-size: 12pt;
+                padding: 5px;
+                background: #fff;
+            }
+
+        }
+    }
 </style>
