@@ -6,12 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     pokemon: [],
-    base_url: 'http://10.225.132.82:3000',
+    base_url: 'http://localhost:3000',
     filter: '',
-    fighters: [
-      [],
-      []
-    ]
+    fighters: []
   },
   mutations: {
     setPokemon(state, pokemon){
@@ -20,8 +17,17 @@ export default new Vuex.Store({
     filter(state, filter){
       state.filter = filter
     },
-    setFighters(state, {position, pokemon}){
-      state.fighters[position] = pokemon
+    setFighter(state, {position, pokemon}){
+      if (position == 0){
+        state.fighters.shift()
+        state.fighters.unshift(pokemon[0])
+      } else {
+        state.fighters.pop()
+        state.fighters.push(pokemon[0])
+      }
+    },
+    setDefaultFighters(state, fighters){
+      state.fighters = fighters
     }
   },
   actions: {

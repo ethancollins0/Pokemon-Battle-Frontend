@@ -1,7 +1,7 @@
 <template>
     <div class='pokemon-filter'>
         <form @submit="handleSubmit">
-            <input name='name' v-on:input="handleChange" />
+            <input placeholder="filter..." name='name' v-on:input="handleChange" />
         </form>
     </div>
 </template>
@@ -19,7 +19,9 @@
                 console.log(event.target.name.value)
             },
             handleChange(event){
-                this.$store.commit('filter', event.target.value)
+                let value = event.target.value
+                value = value.split(' ').join('')
+                this.$store.commit('filter', value)
             }
         }
     }

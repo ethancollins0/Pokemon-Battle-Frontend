@@ -2,7 +2,7 @@
     <div class='pokemon-page'>
         <PokemonFilter />
         <div class='pokemon-card-container'>
-            <PokemonCard v-for="pokemon in filterPokemon()" :pokemon="pokemon" :key="pokemon.id" />
+            <PokemonCard v-for="pokemon in pokemonArray" :pokemon="pokemon" :key="pokemon.id" />
         </div>
     </div>
 </template>
@@ -26,6 +26,9 @@
                     return pokemon.name.toLowerCase().replace(' ', '').includes(this.filter.toLowerCase())
                 })
             }
+        },
+        mounted(){
+            console.log(this.filterPokemon())
         },
         components: {
             PokemonCard,

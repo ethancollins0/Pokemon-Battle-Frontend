@@ -6,8 +6,8 @@
                 <h3>{{pokemon.name}}</h3>
             </div>
             <div class='pokemon-selection'>
-                <button name='1' @click="handleClick" >Select Fighter 1</button>
-                <button name='2' @click="handleClick" >Selecter Fighter 2</button>
+                <button name='0' @click="handleClick" >Select Fighter 1</button>
+                <button name='1' @click="handleClick" >Selecter Fighter 2</button>
             </div>
         </div>
     </div>
@@ -25,10 +25,14 @@
         },
         methods: {
             handleClick(event){
-                console.log(+event.target.name)
+                const position = +event.target.name
                 fetch(this.base_url + `/pokemon/${this.pokemon.id}`)
                     .then(res => res.json())
-                    .then(console.log)
+                    .then(pokemon => {
+                        pokemon
+                            ? this.$store.commit('setFighter', {position, pokemon})
+                            : null
+                    })
             }
         }
     }
